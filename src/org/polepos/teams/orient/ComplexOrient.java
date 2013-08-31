@@ -46,16 +46,8 @@ public class ComplexOrient extends OrientDriver implements Complex {
         db().getEntityManager().registerEntityClass(ComplexHolder2.class);
         db().getEntityManager().registerEntityClass(ComplexHolder3.class);
         db().getEntityManager().registerEntityClass(ComplexHolder4.class);
-    }
-
-    @Override
-   	public void prepare() {
-        super.prepare();
         indexField(ComplexHolder2.class, "_i2");
-
-   		//config.objectClass(ComplexHolder2.class).objectField("_i2").indexed(true);
-   		//config.activationDepth(1);
-   	}
+    }
 
     @Override
 	public Object write() {
