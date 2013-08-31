@@ -55,9 +55,16 @@ public abstract class OrientDriver extends DriverBase {
 	
 	public abstract void configure(Configuration config);
 	
-    protected void indexField(Class clazz, String fieldName) {
-
+    protected void indexField(Class clazz, String fieldName)
+    {
         indexField(null, clazz, fieldName);
+   	}
+
+    protected void setOversize(Class clazz, float v)
+    {
+        OSchema oSchema = db().getMetadata().getSchema();
+        OClass oClass = oSchema.getClass(clazz);
+        oClass.setOverSize(v);
    	}
 
 	protected void indexField(Configuration config, Class clazz, String fieldName) {
@@ -74,7 +81,9 @@ public abstract class OrientDriver extends DriverBase {
 
             }
         }
-        oClass.createIndex(fieldName + "Idx", OClass.INDEX_TYPE.NOTUNIQUE, fieldName);
+        if (!oClass.areIndexed(fieldName) ) {
+            oClass.createIndex(fieldName + "Idx", OClass.INDEX_TYPE.NOTUNIQUE, fieldName);
+        }
 	}
 
 	public void closeDatabase() {

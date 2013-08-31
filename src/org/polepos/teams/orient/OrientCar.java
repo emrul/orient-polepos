@@ -115,7 +115,7 @@ public class OrientCar extends Car {
 
         if ( pool == null ) {
             pool = new OObjectDatabasePool();
-            pool.setup(1,100);
+            pool.setup(configuration.getMinPoolSize(),configuration.getMaxPoolSize());
         }
         OObjectDatabaseTx db;
         if ( usePooledConnection() ) {
@@ -129,9 +129,12 @@ public class OrientCar extends Car {
             db = db.create();
         }
         */
-        if ( db.isClosed())
+        if ( db.isClosed()) {
+            // Just an experiment with https://github.com/orientechnologies/orientdb/wiki/Performance-Tuning#network-connection-pool
+            db.setProperty("minPool", 2);
+            db.setProperty("maxPool", 5);
             db = db.open(configuration.getUsername(), configuration.getPassword());
-
+        }
         return db;
 	}
 

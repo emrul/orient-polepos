@@ -37,7 +37,17 @@ public class Configuration {
         return embeddedConfig;
     }
 
-    String url;
+
+    public int getMinPoolSize() {
+        String sMinPool = properties.get("orient.minpool","1");
+        return Integer.parseInt(sMinPool);
+    }
+
+    public int getMaxPoolSize() {
+        String sMaxPool = properties.get("orient.maxpool","100");
+        return Integer.parseInt(sMaxPool);
+    }
+
     String embeddedConfig;
 
     public Configuration() {
