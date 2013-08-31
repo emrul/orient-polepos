@@ -1,1 +1,13 @@
-This file was created by IntelliJ IDEA 12.1.4 for binding GitHub repository
+To use this code:
+
+1. Download the poleposition benchmark from http://polepos.org - direct linkhttp://sourceforge.net/project/showfiles.php?group_id=134549
+2. Overlay the files from this repository.
+3. Start OrientDb server and create a new database 'polepos'.
+4. Run 'RunSeason'
+
+Configuration options are held in: settings/orientdb.properties
+
+Known issues:
+- Not sure db connections are being used in the most efficient way (first experience with OrientDb, more of a case of 'hacking it until it worked')
+- Could not get raw binding (https://github.com/orientechnologies/orientdb/wiki/Object-2-Record-Java-Binding#raw-binding) to work, annotations weren't being recognised so persisted entity fields were renamed to meet naming convention requirements
+- Have added 'massiveIntent' declarations before doing big writes but have not done the same for massiveRead, not sure if it is needed.
