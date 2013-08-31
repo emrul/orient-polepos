@@ -1,6 +1,6 @@
 To use this code:
 
-1. Download the poleposition benchmark from http://polepos.org - direct linkhttp://sourceforge.net/project/showfiles.php?group_id=134549
+1. Download the poleposition benchmark from http://polepos.org - direct link http://sourceforge.net/project/showfiles.php?group_id=134549
 2. Overlay the files from this repository.
 3. Start OrientDb server and create a new database 'polepos'.
 4. Run 'RunSeason'
