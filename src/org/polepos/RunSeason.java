@@ -33,6 +33,10 @@ import org.polepos.framework.Team;
 import org.polepos.reporters.DefaultReporterFactory;
 import org.polepos.reporters.Reporter;
 import org.polepos.runner.AbstractRunner;
+import org.polepos.teams.db4o.Db4oClientServerTeam;
+import org.polepos.teams.db4o.Db4oTeam;
+import org.polepos.teams.orient.OrientLocalClient;
+import org.polepos.teams.orient.OrientPLocalClient;
 import org.polepos.teams.orient.OrientRemotePooledClient;
 
 /**
@@ -88,12 +92,16 @@ public class RunSeason extends AbstractRunner {
 //				new JdoTeam(),
 //				new JpaTeam(true),
 				
-// 				new Db4oTeam(),
-//1				new Db4oClientServerTeam(),
+ 				new Db4oTeam(),
+				new Db4oClientServerTeam(),
 				
 //1				new JdbcTeam(),
 //1				new HibernateTeam(),
-//1				new MongoDBTeam(),
+//				new MongoDBTeam(),
+
+//                new OrientMemoryClient(),
+                new OrientLocalClient(),
+                new OrientPLocalClient(),
 				new OrientRemotePooledClient()
 //				new JpaTeam(),
 //				new JviTeam(),

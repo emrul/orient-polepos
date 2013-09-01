@@ -1,5 +1,8 @@
 package org.polepos.teams.orient;
 
+import com.orientechnologies.orient.core.engine.local.OEngineLocal;
+import com.orientechnologies.orient.core.engine.local.OEngineLocalPaginated;
+import com.orientechnologies.orient.core.engine.memory.OEngineMemory;
 import org.polepos.framework.PropertiesHandler;
 
 public class Configuration {
@@ -23,11 +26,15 @@ public class Configuration {
 
     public String getUrl(String engine){
         // One of remote, local, plocal, memory
-        String url = properties.get("orient.url."+engine,"");
-        if ( url == "" ) {
+        String url;
+        if ( engine == OEngineMemory.NAME) {
             url = "memory:"+getDatabase();
         }
+        else if ( engine == OEngineLocal.NAME || engine == OEngineLocalPaginated.NAME ) {
+            url = engine+":"+OrientCar.FOLDER+"/"+engine+"/"+getDatabase();
+        }
         else {
+            url = properties.get("orient.url."+engine,"");
             url = engine+":"+url+"/"+getDatabase();
         }
         return url;
@@ -38,13 +45,26 @@ public class Configuration {
     }
 
 
+    public boolean getUseTxLog() {
+        return properties.getBoolean("orient.useTxLog");
+    }
     public int getMinPoolSize() {
-        String sMinPool = properties.get("orient.minpool","1");
+        String sMinPool = properties.get("orient.minPool","1");
         return Integer.parseInt(sMinPool);
     }
 
     public int getMaxPoolSize() {
-        String sMaxPool = properties.get("orient.maxpool","100");
+        String sMaxPool = properties.get("orient.maxPool","100");
+        return Integer.parseInt(sMaxPool);
+    }
+
+    public int getMinNetowrkPoolSize() {
+        String sMinPool = properties.get("orient.minNetworkPool","1");
+        return Integer.parseInt(sMinPool);
+    }
+
+    public int getMaxNetworkPoolSize() {
+        String sMaxPool = properties.get("orient.maxNetworkPool","1");
         return Integer.parseInt(sMaxPool);
     }
 

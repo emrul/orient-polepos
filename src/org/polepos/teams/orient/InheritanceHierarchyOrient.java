@@ -20,6 +20,7 @@ MA  02111-1307, USA. */
 package org.polepos.teams.orient;
 
 import com.orientechnologies.orient.core.intent.OIntentMassiveInsert;
+import com.orientechnologies.orient.core.intent.OIntentMassiveRead;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import org.polepos.circuits.inheritancehierarchy.InheritanceHierarchy;
@@ -65,11 +66,13 @@ public class InheritanceHierarchyOrient extends OrientDriver implements Inherita
 	@Override
 	public void query(){
         int count = setup().getSelectCount();
+        declareIntent(new OIntentMassiveRead());
         String sql = "select from InheritanceHierarchy4 where i2 = ?";
         final OQuery<InheritanceHierarchy4> query = new OSQLSynchQuery<InheritanceHierarchy4>(sql);
         for (int i = 1; i <= count; i++) {
             doQuery(query, i);
         }
+        declareIntent(null);
     }
     
 	@Override

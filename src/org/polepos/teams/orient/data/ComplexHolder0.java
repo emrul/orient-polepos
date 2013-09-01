@@ -33,16 +33,15 @@ import java.util.List;
 
 public class ComplexHolder0 implements CheckSummable {
 	
-	// makes JDBC coding easier, not used for object databases (db4o , VOD )
     @Id
     private Object id;
 
     private String name;
-	
+
 	private List<ComplexHolder0> _children = new ArrayList<ComplexHolder0>();
 	
-	private ComplexHolder0[] _array;
-	
+    private ComplexHolder0[] _array;
+
 	public static ComplexHolder0 generate(int depth, int leafs, boolean disjunctSpecial){
 		ComplexHolder0 complexHolder = new ComplexHolder0();
 		complexHolder.setName("root");
@@ -106,7 +105,7 @@ public class ComplexHolder0 implements CheckSummable {
 	}
 
 
-	public static final Closure4[] FACTORIES = {
+	public static transient final Closure4[] FACTORIES = {
 		new Closure4<ComplexHolder0>(){
 			@Override
 			public ComplexHolder0 run() {

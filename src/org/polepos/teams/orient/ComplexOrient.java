@@ -41,6 +41,7 @@ public class ComplexOrient extends OrientDriver implements Complex {
     @Override
     public void prepareDatabase() {
         super.prepareDatabase();    //To change body of overridden methods use File | Settings | File Templates.
+        //db().setAutomaticSchemaGeneration(true);
         db().getEntityManager().registerEntityClass(ComplexHolder0.class);
         db().getEntityManager().registerEntityClass(ComplexHolder1.class);
         db().getEntityManager().registerEntityClass(ComplexHolder2.class);
@@ -90,6 +91,7 @@ public class ComplexOrient extends OrientDriver implements Complex {
         String sql = "select from ComplexHolder2 where _i2 = ?";
         final OQuery<ComplexHolder2> query = (new OSQLSynchQuery<ComplexHolder2>(sql)).setFetchPlan("*:-1");
 
+        //declareIntent(new OIntentMassiveRead());
 		for (int run = 0; run < selectCount; run++) {
 			List<ComplexHolder2> result = db().query(query, currentInt);
 			ComplexHolder2 holder = result.get(0);
@@ -110,6 +112,7 @@ public class ComplexOrient extends OrientDriver implements Complex {
 				currentInt = firstInt;
 			}
 		}
+        //declareIntent(null);
 	}
 	
 	@Override

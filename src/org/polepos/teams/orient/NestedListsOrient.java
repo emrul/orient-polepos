@@ -18,8 +18,10 @@ public class NestedListsOrient extends OrientDriver implements NestedLists {
     @Override
     public void prepareDatabase() {
         super.prepareDatabase();
+        db().setAutomaticSchemaGeneration(true);
         db().getEntityManager().registerEntityClass(ListHolder.class);
         indexField(ListHolder.class, "name");
+        setOversize(ListHolder.class, 2);
     }
 
 

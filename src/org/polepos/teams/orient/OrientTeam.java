@@ -111,14 +111,23 @@ public class OrientTeam extends Team {
             for (int i = 0; i < options.length; i++) {
                 try{
                     switch (options[i]){
+                        case OrientOptions.EMBEDDED_SERVER:
+                            _name += " EMBEDDED";
+                            break;
                         case OrientOptions.STORAGE_LOCAL:
                             _name += " LOCAL";
+                            break;
+                        case OrientOptions.STORAGE_PLOCAL:
+                            _name += " PLOCAL";
                             break;
                         case OrientOptions.STORAGE_MEMORY:
                             _name += " MEMORY";
                             break;
-                        case OrientOptions.EMBEDDED_SERVER:
-                            _name += " EMBEDDED";
+                        case OrientOptions.STORAGE_REMOTE:
+                            _name += " REMOTE";
+                            break;
+                        case OrientOptions.POOLED_CONNECTION:
+                            _name += " POOLED";
                             break;
                         default:
                             break;

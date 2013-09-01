@@ -67,7 +67,7 @@ public class OrientCar extends Car {
 	
 
 	public OrientCar(Team team, int[] options, ConfigurationSetting[] configurations) {
-		super(team, "0xFFCA07");
+		super(team, "0xD44413");
 		_options = options;
 		_configurations = configurations;
 		name = OConstants.getVersion();
@@ -87,6 +87,8 @@ public class OrientCar extends Car {
      */
     public OObjectDatabaseTx openDb(Configuration configuration)
     {
+        OGlobalConfiguration.TX_USE_LOG.setValue(configuration.getUseTxLog());
+
     	//configure(serverConfiguration);
     	//configure(objectContainerConfiguration);
     	/*
@@ -124,11 +126,11 @@ public class OrientCar extends Car {
         else {
             db = new OObjectDatabaseTx(url);
         }
-        /*
-        if (!_db.exists() ) {
+
+        if (!db.exists() ) {
             db = db.create();
         }
-        */
+
         if ( db.isClosed()) {
             // Just an experiment with https://github.com/orientechnologies/orientdb/wiki/Performance-Tuning#network-connection-pool
             db.setProperty("minPool", 2);
